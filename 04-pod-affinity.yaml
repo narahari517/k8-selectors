@@ -37,16 +37,14 @@ metadata:
 spec:
   affinity:
     podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - weight: 100
-          podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                - affinity
-            topologyKey: topology.kubernetes.io/zone
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: purpose
+            operator: In
+            values:
+            - affinity
+        topologyKey: "kubernetes.io/hostname"
   containers:
   # docker run -d --name nginx nginx
   - name: nginx
